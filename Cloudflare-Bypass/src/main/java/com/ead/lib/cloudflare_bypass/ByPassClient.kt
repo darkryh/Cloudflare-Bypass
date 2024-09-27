@@ -6,7 +6,6 @@ import android.webkit.WebViewClient
 import com.ead.lib.cloudflare_bypass.core.Scripts
 import com.ead.lib.cloudflare_bypass.core.system.extensions.evaluateJavascript
 import com.ead.lib.cloudflare_bypass.core.system.extensions.isCloudFlareByPassTitle
-import com.ead.lib.cloudflare_bypass.util.Thread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -24,6 +23,7 @@ open class BaseClient : WebViewClient() {
      */
     protected val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
+    protected val mainScope : CoroutineScope = CoroutineScope(Dispatchers.Main)
 
 
     /**
@@ -142,7 +142,7 @@ open class ByPassClient : BaseClient() {
                 /**
                  * launch a coroutine to wait for the bypass response
                  */
-                coroutineScope.launch(Dispatchers.IO) {
+                coroutineScope.launch {
 
 
                     /**
@@ -156,7 +156,7 @@ open class ByPassClient : BaseClient() {
                     /**
                      * call the onPageFinishedPassed function on the ui thread
                      */
-                    Thread.onUi { onPageFinishedByPassed(view, url) }
+                    mainScope.launch(Dispatchers.Main) { onPageFinishedByPassed(view, url) }
                 }
             }
 
