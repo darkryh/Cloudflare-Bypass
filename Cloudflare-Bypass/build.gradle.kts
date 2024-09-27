@@ -41,17 +41,20 @@ publishing {
             }
 
             groupId = "com.ead.lib"
-            artifactId = "CloudFlare-ByPass"
+            artifactId = "Cloudflare-Bypass"
             version = "0.0.1"
         }
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.webkit)
+    implementation(libs.kotlinx.coroutines.android)
+    testImplementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.junit.ktx)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.robolectric)
 }
