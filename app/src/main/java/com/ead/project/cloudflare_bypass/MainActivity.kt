@@ -53,7 +53,7 @@ fun WebViewByPass(modifier: Modifier = Modifier) {
                     Toast.makeText(view?.context, "ByPassed", Toast.LENGTH_SHORT).show()
                 }
             }
-            it.loadUrl("https://monoschinos2.com/")
+            it.loadUrl("https://ww3.animeonline.ninja/")
         }
     )
 }
