@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -19,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Clouddlare-Bypass"
+rootProject.name = "Cloudflare-Bypass"
 include(":app")
-include(":CloudFlare-ByPass")
+include(":Cloudflare-Bypass")
