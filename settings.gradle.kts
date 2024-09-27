@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CloudFlare-ByPass"
+rootProject.name = "Clouddlare-Bypass"
 include(":app")
 include(":CloudFlare-ByPass")
