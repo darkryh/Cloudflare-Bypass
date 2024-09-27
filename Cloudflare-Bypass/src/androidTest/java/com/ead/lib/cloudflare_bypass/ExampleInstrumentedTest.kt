@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ead.lib.cloudflare_bypass.test", appContext.packageName)
+        assertEquals("com.ead.lib.cloudflare_bypass", appContext.packageName)
     }
 }
