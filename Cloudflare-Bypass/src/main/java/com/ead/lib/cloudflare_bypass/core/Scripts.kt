@@ -1,7 +1,6 @@
 package com.ead.lib.cloudflare_bypass.core
 
 object Scripts {
-
     val CLOUDFLARE_BYPASS =
         """
         setInterval(() => {
