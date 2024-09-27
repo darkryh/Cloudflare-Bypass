@@ -23,6 +23,9 @@ open class BaseClient : WebViewClient() {
      */
     protected val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
+    /**
+     * Scope to launch coroutines to react to the bypass response
+     */
     protected val mainScope : CoroutineScope = CoroutineScope(Dispatchers.Main)
 
 
@@ -156,7 +159,7 @@ open class ByPassClient : BaseClient() {
                     /**
                      * call the onPageFinishedPassed function on the ui thread
                      */
-                    mainScope.launch(Dispatchers.Main) { onPageFinishedByPassed(view, url) }
+                    mainScope.launch { onPageFinishedByPassed(view, url) }
                 }
             }
 
