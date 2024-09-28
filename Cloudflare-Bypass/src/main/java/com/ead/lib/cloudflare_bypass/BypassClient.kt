@@ -3,6 +3,7 @@ package com.ead.lib.cloudflare_bypass
 import android.graphics.Bitmap
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.annotation.VisibleForTesting
 import com.ead.lib.cloudflare_bypass.core.Scripts
 import com.ead.lib.cloudflare_bypass.core.system.extensions.evaluateJavascript
 import com.ead.lib.cloudflare_bypass.core.system.extensions.isCloudFlareByPassTitle
@@ -32,6 +33,7 @@ open class BaseClient : WebViewClient() {
     /**
      * flag to know if the page has started and initialize the bypass
      */
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private var onPageStartedPassed = false
 
 
@@ -110,7 +112,7 @@ open class BaseClient : WebViewClient() {
 /**
  * Base Client to setup the CloudFlare Bypass
  */
-open class ByPassClient : BaseClient() {
+open class BypassClient : BaseClient() {
 
     /**
      * Client that automatically by pass
