@@ -52,7 +52,7 @@ fun AndroidView(modifier: Modifier = Modifier) {
     AndroidView(
         modifier = modifier.fillMaxSize(),
         factory = { context ->
-            NoMoreAdsWebView(context).apply {
+            WebView(context).apply {
                 webViewClient = BypassClient()
             }
         }
