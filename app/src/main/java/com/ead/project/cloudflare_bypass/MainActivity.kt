@@ -2,6 +2,7 @@ package com.ead.project.cloudflare_bypass
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -41,19 +42,22 @@ fun WebViewByPass(modifier: Modifier = Modifier) {
         modifier = modifier,
         factory = { context ->
             WebView(context).apply {
+                id = R.id.test_id_web_view
                 settings.javaScriptEnabled = true
-            }
-        },
-        update = {
-            it.webViewClient = object : BypassClient() {
-
-                override fun onPageFinishedByPassed(view: WebView?, url: String?) {
-                    super.onPageFinishedByPassed(view, url)
-
-                    Toast.makeText(view?.context, "ByPassed", Toast.LENGTH_SHORT).show()
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                settings.domStorageEnabled = true
+                settings.userAgentString = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.69 Mobile Safari/537.36"
+                webViewClient = object : BypassClient() {
+                    override fun onPageFinishedByPassed(view: WebView?, url: String?) {
+                        super.onPageFinishedByPassed(view, url)
+                        Toast.makeText(context, "Bypass", Toast.LENGTH_SHORT).show()
+                    }
                 }
+                loadUrl("https://ww3.animeonline.ninja/")
             }
-            it.loadUrl("https://ww3.animeonline.ninja/")
         }
     )
 }
