@@ -49,7 +49,7 @@ jobs:
         with:
           api-level: 30
           force-avd-creation: false
-          emulator-port: 5554
+          emulator-port: 5587
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
@@ -61,7 +61,7 @@ jobs:
           target: default
           arch: x86
           profile: Nexus 4
-          emulator-port: 5554
+          emulator-port: 5587
           emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
           script: |
             adb wait-for-device
