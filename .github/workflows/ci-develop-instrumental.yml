@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [27 , 29]
-        target: [default ,google_apis]
+        api-level: [26 , 28]
+        target: [default]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -61,7 +61,6 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
-          emulator-port: 5574
           force-avd-creation: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
