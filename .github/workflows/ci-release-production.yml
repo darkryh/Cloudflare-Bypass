@@ -1,0 +1,72 @@
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build and Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'oracle'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Get Version from Gradle file
+        id: get_version
+        run: |
+          VERSION=$(sed -n 's/^.*version *= *"\(.*\)".*$/\1/p' Cloudflare-Bypass/build.gradle.kts)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Debug Version
+        run: |
+          echo "Version: ${{ env.VERSION }}"
+
+      - name: Create Tag and Push
+        run: |
+          git fetch --all
+          git checkout master
+          git tag ${{ env.VERSION }}
+          git push origin ${{ env.VERSION }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: V${{ env.VERSION }}
+          body: |
+            Automatic Release using Github Actions version ${{ env.VERSION }}
+            - Improving Building.
+            - Faster performance.
+            - Passed tests.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to JitPack
+        run: ./gradlew publish
