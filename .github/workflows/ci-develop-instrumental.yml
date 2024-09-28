@@ -50,7 +50,7 @@ jobs:
           target: default
           arch: x86
           profile: Nexus 4
-          emulator-port: 5583
+          emulator-port: 5582
           emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
           script: |
             adb wait-for-device
