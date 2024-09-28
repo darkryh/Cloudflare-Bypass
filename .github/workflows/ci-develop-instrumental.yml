@@ -31,18 +31,6 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: Gradle cache
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: AVD cache
-        uses: actions/cache@v4
-        id: avd-cache
-        with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: avd-30
-
       - name: Android Instrumental Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -50,7 +38,7 @@ jobs:
           target: default
           arch: x86
           profile: Nexus 4
-          emulator-port: 5580
+          emulator-port: 5579
           emulator-options: -no-window -no-boot-anim -no-audio -no-snapshot-load
           script: |
             adb wait-for-device
