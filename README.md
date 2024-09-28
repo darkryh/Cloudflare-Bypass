@@ -48,7 +48,7 @@ dependencies {
 
 ```kotlin
 @Composable
-fun NoMoreAdsWebView(modifier: Modifier = Modifier) {
+fun AndroidView(modifier: Modifier = Modifier) {
     AndroidView(
         modifier = modifier.fillMaxSize(),
         factory = { context ->
