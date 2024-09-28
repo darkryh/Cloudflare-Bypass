@@ -1,8 +1,4 @@
-
-[![](https://jitpack.io/v/darkryh/Cloudflare-Bypass.svg)](https://jitpack.io/#darkryh/Cloudflare-Bypass)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop.yml/badge.svg)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop-instrumental.yml/badge.svg)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-release-production.yml/badge.svg)
+[![](https://jitpack.io/v/darkryh/Cloudflare-Bypass.svg)](https://jitpack.io/#darkryh/Cloudflare-Bypass)![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop.yml/badge.svg)![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop-instrumental.yml/badge.svg)![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-release-production.yml/badge.svg)
 
 # Cloudflare-Bypass
 
