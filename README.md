@@ -48,7 +48,7 @@ dependencies {
 
 ```kotlin
 @Composable
-fun AndroidView(modifier: Modifier = Modifier) {
+fun ComposableWebView(modifier: Modifier = Modifier) {
     AndroidView(
         modifier = modifier.fillMaxSize(),
         factory = { context ->
@@ -64,7 +64,6 @@ fun AndroidView(modifier: Modifier = Modifier) {
 Options available to the client. The other settings remain unchanged.
 
 ```kotlin
-@SuppressLint("SetJavaScriptEnabled")
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,8 +76,8 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize(),
                         factory = { context ->
                             WebView(context).apply {
-                                settings.javaScriptEnabled = true
-                                settings.userAgentString = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.69 Mobile Safari/537.36"
+                                /**do configuration **/
+                                
                                 webViewClient = object : BypassClient() {
                                     override fun onPageStartedPassed(
                                         view: WebView?,
@@ -93,6 +92,7 @@ class MainActivity : ComponentActivity() {
                                         Toast.makeText(context, "Bypass", Toast.LENGTH_SHORT).show()
                                     }
                                 }
+                                
                                 loadUrl("Your target site")
                             }
                         }

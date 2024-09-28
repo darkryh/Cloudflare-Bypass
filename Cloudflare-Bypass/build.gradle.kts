@@ -42,7 +42,7 @@ publishing {
 
             groupId = "com.ead.lib"
             artifactId = "Cloudflare-Bypass"
-            version = "0.0.1"
+            version = "0.0.3"
         }
     }
 }
