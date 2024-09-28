@@ -13,7 +13,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
-import com.ead.lib.cloudflare_bypass.ByPassClient
+import com.ead.lib.cloudflare_bypass.BypassClient
 import com.ead.project.cloudflare_bypass.ui.theme.CloudFlareByPassTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +45,7 @@ fun WebViewByPass(modifier: Modifier = Modifier) {
             }
         },
         update = {
-            it.webViewClient = object : ByPassClient() {
+            it.webViewClient = object : BypassClient() {
 
                 override fun onPageFinishedByPassed(view: WebView?, url: String?) {
                     super.onPageFinishedByPassed(view, url)
