@@ -1,14 +1,13 @@
-
-[![](https://jitpack.io/v/darkryh/Cloudflare-Bypass.svg)](https://jitpack.io/#darkryh/Cloudflare-Bypass)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop.yml/badge.svg)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop-instrumental.yml/badge.svg)  
-![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-release-production.yml/badge.svg)
+![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop.yml/badge.svg) ![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-develop-instrumental.yml/badge.svg) ![CI](https://github.com/darkryh/Cloudflare-Bypass/actions/workflows/ci-release-production.yml/badge.svg) [![](https://jitpack.io/v/darkryh/Cloudflare-Bypass.svg)](https://jitpack.io/#darkryh/Cloudflare-Bypass)
 
 # Cloudflare-Bypass
 
 > **Note:** For devices running Android API level 30 or lower, it is recommended to specify a custom `userAgent` in the `WebView` settings to prevent being blocked by outdated browser warnings.
 
 Cloudflare-Bypass is an Android library designed to seamlessly bypass Cloudflare's anti-bot protection using a custom `WebViewClient`. This library allows developers to load websites protected by Cloudflare's challenge without needing manual user intervention.
+
+## Show-Case
+![Bypass Cloudflare](assets/images/cloudflase_bypass_show_case.gif)
 
 ## Features
 
