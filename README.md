@@ -6,6 +6,9 @@
 
 Cloudflare-Bypass is an Android library designed to seamlessly bypass Cloudflare's anti-bot protection using a custom `WebViewClient`. This library allows developers to load websites protected by Cloudflare's challenge without needing manual user intervention.
 
+## Show-Case
+![Bypass Cloudflare](assets/images/cloudflase_bypass_show_case.gif)
+
 ## Features
 
 - Custom `WebViewClient` for Cloudflare bypass.
