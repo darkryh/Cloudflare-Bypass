@@ -59,6 +59,8 @@ object Scripts {
                     // Challenge passed, clean up and notify
                     clearInterval(intervalId);
                     
+                    // Safety check: Interface is injected by BaseClient.initializeByPass()
+                    // This check ensures graceful degradation if script runs before injection
                     if (typeof CloudFlareByPassInterface !== 'undefined') {
                         CloudFlareByPassInterface.onByPass();
                     }
@@ -70,10 +72,10 @@ object Scripts {
     
     /**
      * Legacy compatibility: Default bypass script with 2500ms polling interval
+     * Use getCloudflareBypassScript() for the same functionality with explicit parameters
      */
     @Deprecated(
-        "Use getCloudflareBypassScript() for configurable polling interval",
-        ReplaceWith("getCloudflareBypassScript()")
+        "Use getCloudflareBypassScript() for configurable polling interval"
     )
     val CLOUDFLARE_BYPASS: String
         get() = getCloudflareBypassScript()
