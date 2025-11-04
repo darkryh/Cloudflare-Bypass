@@ -59,7 +59,8 @@ object Scripts {
                     // Challenge passed, clean up and notify
                     clearInterval(intervalId);
                     
-                    // Safety check: Interface is injected by BaseClient.initializeByPass()
+                    // Safety check: Interface is injected by BaseClient's initializeByPass()
+                    // via addJavascriptInterface() in onPageStarted callback
                     // This check ensures graceful degradation if script runs before injection
                     if (typeof CloudFlareByPassInterface !== 'undefined') {
                         CloudFlareByPassInterface.onByPass();
@@ -73,6 +74,10 @@ object Scripts {
     /**
      * Legacy compatibility: Default bypass script with 2500ms polling interval
      * Use getCloudflareBypassScript() for the same functionality with explicit parameters
+     * 
+     * @since 0.0.5
+     * @deprecated This property will be maintained for backward compatibility but new code
+     * should use getCloudflareBypassScript() for better configurability
      */
     @Deprecated(
         "Use getCloudflareBypassScript() for configurable polling interval"

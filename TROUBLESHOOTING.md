@@ -258,8 +258,18 @@ Android API ≤ 30 may have outdated WebView user agents.
 
 **Solution**: Set custom user agent (as noted in README):
 ```kotlin
+// Use a recent Chrome version user agent
+// Update the version numbers periodically to match current Chrome releases
+// Check https://www.whatismybrowser.com/guides/the-latest-user-agent/ for latest
 webView.settings.userAgentString = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+
+// Or dynamically get current user agent and update version
+val currentUA = webView.settings.userAgentString
+val updatedUA = currentUA.replace(Regex("Chrome/\\d+\\."), "Chrome/120.")
+webView.settings.userAgentString = updatedUA
 ```
+
+**Note**: The Chrome version number (120.0.0.0 in the example) should be updated periodically. Check the [latest Chrome versions](https://www.whatismybrowser.com/guides/the-latest-user-agent/) and adjust accordingly.
 
 **B. WebView version too old**
 
