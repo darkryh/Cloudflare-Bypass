@@ -111,8 +111,21 @@ open class BaseClient : WebViewClient() {
 
 /**
  * Base Client to setup the CloudFlare Bypass
+ * 
+ * @param bypassTimeoutSeconds Maximum time to wait for bypass completion (default: 15 seconds)
+ * @param pollingIntervalMs Polling interval for checking bypass status (default: 2500ms)
  */
-open class BypassClient : BaseClient() {
+open class BypassClient(
+    private val bypassTimeoutSeconds: Long = DEFAULT_BYPASS_TIMEOUT_SECONDS,
+    private val pollingIntervalMs: Long = Scripts.DEFAULT_POLLING_INTERVAL
+) : BaseClient() {
+
+    companion object {
+        /**
+         * Default timeout for bypass attempts in seconds
+         */
+        const val DEFAULT_BYPASS_TIMEOUT_SECONDS = 15L
+    }
 
     /**
      * Client that automatically by pass
@@ -140,7 +153,7 @@ open class BypassClient : BaseClient() {
                 /**
                  * evaluate the javascript to start the bypass
                  */
-                view.evaluateJavascript(Scripts.CLOUDFLARE_BYPASS)
+                view.evaluateJavascript(Scripts.getCloudflareBypassScript(pollingIntervalMs))
 
 
 
@@ -151,17 +164,24 @@ open class BypassClient : BaseClient() {
 
 
                     /**
-                     * wait or block the thread for the bypass response for 15 seconds
-                     * or bypass the challenge
+                     * wait or block the thread for the bypass response
+                     * or until timeout expires
                      */
-                    latch.await(15, TimeUnit.SECONDS)
+                    val bypassSuccessful = latch.await(bypassTimeoutSeconds, TimeUnit.SECONDS)
 
 
 
                     /**
                      * call the onPageFinishedPassed function on the ui thread
                      */
-                    mainScope.launch { onPageFinishedByPassed(view, url) }
+                    mainScope.launch { 
+                        onPageFinishedByPassed(view, url)
+                        
+                        // Notify subclasses about bypass timeout if applicable
+                        if (!bypassSuccessful) {
+                            onBypassTimeout(view, url)
+                        }
+                    }
                 }
             }
 
@@ -171,5 +191,16 @@ open class BypassClient : BaseClient() {
              */
             else -> { onPageFinishedByPassed(view, url) }
         }
+    }
+    
+    /**
+     * Called when the bypass operation times out
+     * Override this to handle timeout scenarios
+     * 
+     * @param view The WebView instance
+     * @param url The URL that timed out
+     */
+    protected open fun onBypassTimeout(view: WebView?, url: String?) {
+        // Default implementation does nothing, subclasses can override
     }
 }
